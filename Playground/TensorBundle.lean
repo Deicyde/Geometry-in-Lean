@@ -63,9 +63,14 @@ abbrev TrivialBundle : M → Type _ := fun _ ↦  𝕜
 def CotangentSpace (I : ModelWithCorners 𝕜 E H) (x : M) :=
   TangentSpace I x →L[𝕜] 𝕜
 
+@[reducible]
+def TensorR0Space (s : ℕ) (I : ModelWithCorners 𝕜 E H) (x : M) :=
+  ContinuousMultilinearMap 𝕜 (fun _ : Fin s => CotangentSpace I x) 𝕜
+
 noncomputable instance : ContMDiffVectorBundle
    n (E →L[𝕜] 𝕜) (fun x : M => CotangentSpace I x) I := by
   infer_instance
+
 
 
 noncomputable instance (r : ℕ) :
